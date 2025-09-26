@@ -17,7 +17,9 @@ meta.create_all(engine)
 
 conn = engine.connect()
 
-insert_statement = insert(people).values(name='Jane',age=35)
-result = conn.execute(insert_statement)
-conn.commit()
 
+select_statement = people.select().where(people.c.age > 30)
+result = conn.execute(select_statement)
+for row in result.fetchall():
+    print(row)
+    
