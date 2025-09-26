@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine , MetaData, Table, Column, Integer, String, insert
+from sqlalchemy import create_engine , MetaData, Table, Column, Integer, String, insert, ForeignKey, Float
 
 engine = create_engine('sqlite:///mydatabase.db',echo=True)
 
@@ -11,6 +11,15 @@ people = Table(
     Column('name', String,nullable=False),
     Column('age',Integer)
 
+)
+
+things = Table(
+    "things",
+    meta,
+    Column('id', Integer, primary_key=True),
+    Column('description', String, nullable=False),
+    Column('value', Float),
+    Column('owner', Integer, ForeignKey(people.id))
 )
 
 meta.create_all(engine)
