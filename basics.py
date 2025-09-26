@@ -18,8 +18,18 @@ meta.create_all(engine)
 conn = engine.connect()
 
 
+# select_statement = people.select().where(people.c.age > 30)
+# result = conn.execute(select_statement)
+# for row in result.fetchall():
+#     print(row)
+
+# to update
+
+# update_statement = people.update().where(people.c.name == 'Mike').values(age=50)
+# result = conn.execute(update_statement)
+# conn.commit()
+
 select_statement = people.select().where(people.c.age > 30)
 result = conn.execute(select_statement)
 for row in result.fetchall():
     print(row)
-    
